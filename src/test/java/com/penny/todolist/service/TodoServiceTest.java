@@ -1,5 +1,6 @@
 package com.penny.todolist.service;
 
+import com.penny.todolist.exception.NotFoundException;
 import com.penny.todolist.model.Todo;
 import com.penny.todolist.repository.TodoRepository;
 import org.junit.jupiter.api.Test;
@@ -55,7 +56,7 @@ public class TodoServiceTest {
     }
 
     @Test
-    public void should_return_true_when_delete_Todo_given_Todo_id() {
+    public void should_perform_when_delete_Todo_given_Todo_id() {
         //given
         TodoRepository todoRepository = mock(TodoRepository.class);
         int TodoId = 1;
