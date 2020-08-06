@@ -72,4 +72,11 @@ public class TodoIntegration {
                 .andExpect(jsonPath("$.content").value("test2"))
                 .andExpect(jsonPath("$.status").value(true));
     }
+
+    @Test
+    public void should_delete_todo_when_delete_todo_given_todo_id() throws Exception {
+        //when then
+        mockMvc.perform(delete("/todos/" + TodoId))
+                .andExpect(status().isOk());
+    }
 }
