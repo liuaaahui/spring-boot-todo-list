@@ -9,9 +9,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -44,5 +46,18 @@ public class TodoIntegration {
                 .andExpect(jsonPath("$[0].id").value(TodoId))
                 .andExpect(jsonPath("$[0].content").value("test1"))
                 .andExpect(jsonPath("$[0].status").value(false));
+    }
+
+    @Test
+    public void should_return_todos_when_post_todo_given_todo() throws Exception {
+        //when then
+        mockMvc.perform(post("/todos")
+                .contentType(MediaType.APPLICATION_JSON).content("{\n" +
+                        "  \"content\": \"test1\",\n" +
+                        "  \"status\": \"false\"\n" +
+                        "}"))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.content").value("test1"))
+                .andExpect(jsonPath("$.status").value(false));
     }
 }
