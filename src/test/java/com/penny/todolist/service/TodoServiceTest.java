@@ -3,6 +3,7 @@ package com.penny.todolist.service;
 import com.penny.todolist.model.Todo;
 import com.penny.todolist.repository.TodoRepository;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,12 +58,10 @@ public class TodoServiceTest {
     public void should_return_true_when_delete_Todo_given_Todo_id() {
         //given
         TodoRepository todoRepository = mock(TodoRepository.class);
-        Todo todo = new Todo(1,"test1",false);
-        given(todoRepository.delete(todo.getId())).willReturn(true);
+        int TodoId = 1;
         //when
-        TodoService todoService = new TodoService(todoRepository);
-        boolean newtodo = todoService.delete(todo.getId());
+        todoRepository.deleteById(TodoId);
         //then
-        assertTrue(newtodo);
+        Mockito.verify(todoRepository).deleteById(TodoId);
     }
 }

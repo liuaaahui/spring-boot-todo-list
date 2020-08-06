@@ -1,23 +1,10 @@
 package com.penny.todolist.repository;
 
 import com.penny.todolist.model.Todo;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
+@Repository
+public interface TodoRepository extends JpaRepository<Todo,Integer> {
 
-public class TodoRepository {
-    public List<Todo> findAll() {
-        return null;
-    }
-
-    public Todo save(Todo todo) {
-        return null;
-    }
-
-    public Todo findById(int id) {
-        return null;
-    }
-
-    public Boolean delete(int id) {
-        return null;
-    }
 }

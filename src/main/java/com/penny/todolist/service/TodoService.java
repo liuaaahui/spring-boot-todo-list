@@ -20,7 +20,7 @@ public class TodoService {
     }
 
     public Todo findTodoById(int id) {
-        return todoRepository.findById(id);
+        return todoRepository.findById(id).orElse(null);
     }
 
     public Todo updateTodo(int id, Todo todo) {
@@ -28,6 +28,9 @@ public class TodoService {
     }
 
     public boolean delete(int id) {
-        return todoRepository.delete(id);
+        Todo todo = findTodoById(id);
+        if (todo == null) return false;
+        todoRepository.deleteById(id);
+        return true;
     }
 }
