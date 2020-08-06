@@ -12,8 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -59,5 +58,18 @@ public class TodoIntegration {
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.content").value("test1"))
                 .andExpect(jsonPath("$.status").value(false));
+    }
+
+    @Test
+    public void should_return_todos_when_update_todo_given_todo() throws Exception {
+        //when then
+        mockMvc.perform(put("/todos/" + TodoId)
+                .contentType(MediaType.APPLICATION_JSON).content("{\n" +
+                        "  \"content\": \"test2\",\n" +
+                        "  \"status\": \"true\"\n" +
+                        "}"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.content").value("test2"))
+                .andExpect(jsonPath("$.status").value(true));
     }
 }
