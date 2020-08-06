@@ -52,4 +52,17 @@ public class TodoServiceTest {
         //then
         assertEquals(newtodo, todo);
     }
+
+    @Test
+    public void should_return_true_when_delete_Todo_given_Todo_id() {
+        //given
+        TodoRepository todoRepository = mock(TodoRepository.class);
+        Todo todo = new Todo(1,"test1",false);
+        given(todoRepository.delete(todo.getId())).willReturn(true);
+        //when
+        TodoService todoService = new TodoService(todoRepository);
+        boolean newtodo = todoService.delete(todo.getId());
+        //then
+        assertTrue(newtodo);
+    }
 }
