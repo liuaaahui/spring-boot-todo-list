@@ -3,9 +3,11 @@ package com.penny.todolist.service;
 import com.penny.todolist.exception.NotFoundException;
 import com.penny.todolist.model.Todo;
 import com.penny.todolist.repository.TodoRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class TodoService {
     private static final String DO_NOT_FIND_THIS_TODO = "do not find this todo";
 
