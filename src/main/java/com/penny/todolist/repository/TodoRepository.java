@@ -16,4 +16,8 @@ public class TodoRepository {
     public Todo findById(int id) {
         return null;
     }
+
+    public Boolean delete(int id) {
+        return null;
+    }
 }

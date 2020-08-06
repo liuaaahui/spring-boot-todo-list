@@ -26,4 +26,8 @@ public class TodoService {
     public Todo updateTodo(int id, Todo todo) {
             return todoRepository.save(todo);
     }
+
+    public boolean delete(int id) {
+        return todoRepository.delete(id);
+    }
 }
