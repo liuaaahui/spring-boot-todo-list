@@ -20,6 +20,7 @@ public class TodoController {
         this.todoService = todoService;
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<Todo> getAllTodoList() {
